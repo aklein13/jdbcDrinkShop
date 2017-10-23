@@ -5,12 +5,12 @@ public class Drink {
 	private long id;
 	
 	private String name;
-	private int price;
+	private double price;
 	
 	public Drink() {
 	}
 	
-	public Drink(String name, int price) {
+	public Drink(String name, double price) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -27,10 +27,10 @@ public class Drink {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	
