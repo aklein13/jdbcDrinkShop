@@ -1,19 +1,19 @@
 package com.example.jdbcdemo.domain;
 
-public class Person {
+public class Drink {
 	
 	private long id;
 	
 	private String name;
-	private int yob;
+	private int price;
 	
-	public Person() {
+	public Drink() {
 	}
 	
-	public Person(String name, int yob) {
+	public Drink(String name, int price) {
 		super();
 		this.name = name;
-		this.yob = yob;
+		this.price = price;
 	}
 	public long getId() {
 		return id;
@@ -27,11 +27,11 @@ public class Person {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getYob() {
-		return yob;
+	public int getPrice() {
+		return price;
 	}
-	public void setYob(int yob) {
-		this.yob = yob;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 }
