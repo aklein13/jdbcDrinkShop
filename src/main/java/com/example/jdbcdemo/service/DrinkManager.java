@@ -10,4 +10,6 @@ public interface DrinkManager {
 	public int addDrink(Drink drink);
 	public List<Drink> getAllDrinks();
 	public void addAllDrinks(List<Drink> list);
+	public void removeDrink(String name);
+	public void removeSelectedDrinks(List<Drink> list);
 }

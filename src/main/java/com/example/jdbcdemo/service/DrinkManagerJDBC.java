@@ -22,6 +22,7 @@ public class DrinkManagerJDBC implements DrinkManager {
     private PreparedStatement addDrinkStm;
     private PreparedStatement deleteAllDrinksStm;
     private PreparedStatement getAllDrinksStm;
+    private PreparedStatement removeDrink;
 
     private Statement statement;
 
@@ -49,6 +50,9 @@ public class DrinkManagerJDBC implements DrinkManager {
                     .prepareStatement("DELETE FROM Drink");
             getAllDrinksStm = connection
                     .prepareStatement("SELECT id, name, price FROM Drink");
+            removeDrink = connection
+                    .prepareStatement("DELETE FROM Drink WHERE name=?");
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,6 +83,17 @@ public class DrinkManagerJDBC implements DrinkManager {
             e.printStackTrace();
         }
         return count;
+    }
+
+    @Override
+    public void removeDrink(String name) {
+        try {
+            removeDrink.setString(1, name);
+            removeDrink.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -122,4 +137,21 @@ public class DrinkManagerJDBC implements DrinkManager {
         return drinks;
     }
 
+    @Override
+    public void removeSelectedDrinks(List<Drink> list) {
+        try {
+            connection.setAutoCommit(false);
+            for (Drink drink : list) {
+                removeDrink.setString(1, drink.getName());
+                removeDrink.executeUpdate();
+            }
+            connection.commit();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
 }
